@@ -1,0 +1,46 @@
+<head>
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+
+    <div id="myDiv" style="width: 500px; height: 250px;">
+        <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+    <script>
+        var trace1 = {
+            x: [607.86],
+            y: [' '],
+            name: 'Insurance Pays',
+            orientation: 'h',
+            marker: {
+                color: 'rgba(186,202,51,0.6)',
+                width: 5
+            },
+            type: 'bar'
+        };
+
+        var trace2 = {
+            x: [201.97],
+            y: [' '],
+            name: 'Patient Pays',
+            orientation: 'h',
+            type: 'bar',
+            marker: {
+                color: 'rgba(90,45,129,0.6)',
+                width: 3
+            }
+        };
+
+
+        var data = [trace1, trace2];
+
+        var layout = {
+            title: 'WHO PAYS WHAT?',
+            barmode: 'stack'
+        };
+
+        Plotly.newPlot('myDiv', data, layout);
+    </script>
+</body>
