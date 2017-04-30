@@ -1,7 +1,6 @@
 
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Clear Coverage</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
@@ -10,9 +9,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" src="canvasjs-1.9.8/jquery.canvasjs.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-
 <body>
 <nav class="navbar navbar-light bg-faded">
     <h1 class="navbar-brand mb-0" style="color: #5A2D81">Clear Coverage</h1>
@@ -21,25 +21,27 @@
 <!-- ============================
 PIE CHARTS
 ================================-->
-<div id="doughnutChart" class="chart"></div>
 
 <!-- ============================
 Patient Provider INFO
 ================================-->
-<div class="row" style="height: 400px;text-align: center; color:white;">
-    INSERT 2 pie graphs
-</div>
+<hr>
 <div class="row" style="text-align:center; margin-top: 5px;">
     <div class="col-md-4" style="border-right: 2px solid #BCCD9E">
-        John Doe. <br> 123 Main Street. <br> Austin, Tx 78717.
+      <br><br>
+        <h3>John Doe.</h3> <h3>123 Main Street.</h3><h3>Austin, Tx 78717.</h3>
     </div>
-    <div class="col-md-4">
-
+    <div class="col-md-4" style = "padding-left: 5%;">
+      <div id="myDiv" style="width: 500px; height: 250px;"></div>
     </div>
     <div class="col-md-4" style="border-left: 2px solid #BCCD9E">
-        Austin Heart Hospital. <br> 123 Broadway Street. <br> Austin, TX 78717 <br>
+      <br><br>
+        <h3>Austin Heart Hospital.</h3>
+        <h3>123 Broadway Street.</h3>
+        <h3>Austin, TX 78717</h3>
     </div>
 </div>
+<hr>
 <div class="container">
 
     <!-- ============================
@@ -49,8 +51,8 @@ EOB
     <!--ALL ITEMS PERFORMED ON SAME DATE -->
     <!-- ITEM 1-->
     <div class="row">
-        <div class="card" style="text-align: left; margin-top: 10px;">
-            <div class="card-header " style = "background-color: #ddb3eb">
+        <div class="card" style="text-align: left; margin-top: 10px; width: 100%;">
+            <div class="card-header " style = "background-color: #ebd5f2">
                 <span style="color:#5A2D81; font-weight: bold; font-size: 22px "> Date of Service: 04.29.17</span>
             </div>
             <!--=====================
@@ -63,6 +65,8 @@ EOB
                             <div class="card-block ">
                                 <p style="color:#5A2D81; font-weight: bold; "> 31627 Em Nav Bronch </p>
                                 <span> Bronchoscopy, rigid or flexible, with lung biopsy, single lobe</span>
+                                <br>
+                                <br>
                                 <br>
                                 <p> Diagnosis: Malignant Neoplasm in Lung</p>
                             </div>
@@ -116,8 +120,7 @@ EOB
                                     <div class="col-md-8">
                                     </div>
                                     <div class="col-md-4">
-                                        <button class="btn btn-primary " data-toggle="tooltip" data-placement="bottom" title="Call 1-800-777-8888 " style="border:none;background-color:white; color:blue; margin-top:-5px">
-                                            <span style="text-decoration:underline;">Refute</span></button>
+                                        <h5><span class="badge badge badge-danger">Refute</span></h5>
                                     </div>
                                 </div>
 
@@ -192,8 +195,7 @@ EOB
                                     <div class="col-md-8">
                                     </div>
                                     <div class="col-md-4">
-                                        <button "class="btn btn-primary " data-toggle="tooltip" data-placement="bottom" title="Call 1-800-777-8888" style="color:blue; margin-top:-5px">
-                                        <span style="text-decoration:underline;">Refute</span></button>
+                                        <h5><span class="badge badge badge-danger">Refute</span></h5>
                                     </div>
                                 </div>
 
@@ -209,36 +211,73 @@ EOB
                     <div class="col-md-8">
                         <div class="card " style="min-height: 230px; ">
                             <div class="card-block ">
-                                <p style="color:#5A2D81; font-weight: bold; "> CPT and PROCEDURE NAME</p>
-                                <span>Cellulite is fat that is caught between bands of connective tissue directly beneath the skin that creates a lumpy, bumpy orange peel appearance mostly on the hips, thighs and backsides of most women. </span>
-                                <p> Diagnosis: Respiratory Distress</p>
+                                <p style="color:#5A2D81; font-weight: bold; ">G0400 HST CHANNEL - 3</p>
+                                <span>Home sleep test (HST) with type IV portable monitor, unattended; Minimum of 3 channels </span>
+                                <br>
+                                <br>
+                                <br>
+                                <p>Diagnosis: Malignant Neoplasm in Lung</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4 ">
                         <div class="card " style="min-height: 230px; ">
                             <div class="card-block ">
-                                <p> Total Charge: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $200
-                                    <br> <span style="color:red; font-weight: bold; ">Insurance Paid:
-                                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                      $0</span>
-                                    <br> <span> Discount:
-                                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                      $40</span>
-                                    <br>
+                              <div class="row">
+                                  <div class="col-md-8">
+                                      Total Charge:
+                                  </div>
+                                  <div class="col-md-4">$300.00
+                                  </div>
+                              </div>
 
-                                <h1 style="font-weight: bold; font-size: 24px; color: #BACA33; ">Patient owes: $160</h1>
-                                </p>
+                              <div class="row">
+                                  <div class="col-md-8">
+                                      <span style="color: red; font-weight: bold; ">Insurance Paid: </span>
+                                  </div>
+                                  <div class="col-md-4">
+                                      <span style="color: red; font-weight: bold; "> $0 </span>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-md-8">
+                                      Patient Paid-to-Date:
+                                  </div>
+                                  <div class="col-md-4">$0
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-md-8">
+                                      Discount:
+                                  </div>
+                                  <div class="col-md-4">$0.00
+                                  </div>
+                              </div>
+                              <br>
+                              <div class="row">
+                                  <div class="col-md-8">
+                                      <h1 style="font-weight: bold; font-size: 24px; color: #BACA33; ">Patient owes:</h1>
+                                  </div>
 
-                                <div class="row">
-                                    <button type="button " class="btn btn-primary " data-toggle="tooltip" data-placement="bottom" title="Call 1-800-777-8888 " style="border:none;background-color:white; color:blue;">
+                                  <div class="col-md-4">
+                                      <h1 style="font-weight: bold; font-size: 24px; color: #BACA33; ">$300.00</h1>
+                                  </div>
+                              </div>
 
-                                        <span style="text-decoration:underline;">Refute</span></button>
-                                </div>
+                              <div class="row">
+                                  <div class="col-md-8">
+                                  </div>
+                                  <div class="col-md-4">
+                                      <h5><span class="badge badge badge-danger">Refute</span></h5>
+                                  </div>
+                              </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="card-footer text-muted" style = "text-align: center;">
+              <h1 style="font-weight: bold; font-size: 24px; color: #BACA33; ">Total Patient Owes: $401.79</h1>
             </div>
         </div>
     </div>
@@ -256,7 +295,7 @@ PAY NOW
         </div>
         <div class="card-block ">
             <div class="row ">
-                <div class="col ">
+                <div class="col "  style ="text-align: center;">
                     <p style="color:#5A2D81; font-weight: bold; "> PAY OFFLINE</p>
                     <p> <b>Pay over phone by calling:</b> 123.456.7890 </p>
                     <br> <b>Pay by mail:</b><br>
@@ -264,17 +303,73 @@ PAY NOW
                         <br>Austin, TX 78759
                     </p>
                 </div>
-                <div class="col ">
-                    <button class="btn success ">Pay Online</button>
+                <div class="col " style ="text-align: center;">
+                    <button class="btn btn-success ">Pay Online</button>
                 </div>
-                <div class="col ">
-                    <button class="btn warning ">Sign Up for Care Credit</button>
+                <div class="col " style ="text-align: center;">
+                    <button class="btn btn-warning ">Sign Up for Care Credit</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script type="text/javascript" src="main.js"></script>
+<div id="chartContainer" style="width: 100%; height: 300px"></div>
+<script>
+    console.log('before window load')
+    window.onload =function() {
+        console.log('draw');
+        $("#chartContainer").CanvasJSChart({
+            title: {
+                text: "Insurance Snapshot"
+            },
+            data: [
+                {
+                    type: "doughnut",
+                    indexLabel: "{label}: {y}%",
+                    toolTipContent: "{label}: {y}%",
+                    dataPoints: [
+//                { label: "Deductible Met",       y: 16.6},
+                        { label: "Out of Pocket Pay",        y: 12.8},
+                        { label: "Deductible Met",y: 12.3},
+                        { label: "Deductible Left",         y: 11.9},
+                        // { label: "Copay",         y: 9.0},
+                        // { label: "Out of Pocket",y: 29.7}
+                    ]
+                }
+            ]
+        });
+    }
+</script>
+<script>
+       var trace1 = {
+           x: [607.86],
+           y: [' '],
+           name: 'Insurance Pays',
+           orientation: 'h',
+           marker: {
+               color: 'rgba(186,202,51,0.6)',
+               width: 5
+           },
+           type: 'bar'
+       };
+       var trace2 = {
+           x: [201.97],
+           y: [' '],
+           name: 'Patient Pays',
+           orientation: 'h',
+           type: 'bar',
+           marker: {
+               color: 'rgba(90,45,129,0.6)',
+               width: 3
+           }
+       };
+       var data = [trace1, trace2];
+       var layout = {
+           title: 'What Do You Pay?',
+           barmode: 'stack'
+       };
+       Plotly.newPlot('myDiv', data, layout);
+   </script>
 </body>
 
 </html>
