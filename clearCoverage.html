@@ -14,9 +14,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-light bg-faded">
-    <h1 class="navbar-brand mb-0" style="color: #5A2D81">Clear Coverage</h1>
-</nav>
+&lt;%= erb :_nav_top %>
 
 <!-- ============================
 PIE CHARTS
@@ -54,16 +52,23 @@ EOB
                 <span style="color:#5A2D81; font-weight: bold; font-size: 22px "> Date of Service: 04.29.17</span>
             </div>
             <!--=====================
-            SERVICE #1
+            SERVICES COVERED BY INSURANCE
             ==========================-->
+            &lt;% for procedure in @procedures_performed %>
+              &lt;% if @insurance_receipts.has_key? procedure %>
             <div class="card-block " style="margin-bottom: 0; padding-bottom: 0;">
                 <div class="row ">
                     <div class="col-md-8">
                         <div class="card " style="min-height: 230px; ">
                             <div class="card-block ">
-                                <p style="color:#5A2D81; font-weight: bold; "> 31627 Em Nav Bronch </p>
-                                <span> Bronchoscopy, rigid or flexible, with lung biopsy, single lobe</span>
-                                <br>
+                                <p style="color:#5A2D81; font-weight: bold; ">
+                                  &lt;%= procedure %>
+                                  &lt;%= @cpt_codes[procedure]['service'] %>
+                                </p>
+                                <span>
+                                  &lt;%= @cpt_codes[procedure]['description'] %>
+                                </span>
+                                <br><br>
                                 <p> Diagnosis: Malignant Neoplasm in Lung</p>
                             </div>
                         </div>
@@ -75,7 +80,8 @@ EOB
                                     <div class="col-md-8">
                                         Total Charge:
                                     </div>
-                                    <div class="col-md-4">$500.00
+                                    <div class="col-md-4">
+                                      $&lt;%= '%.2f' % @procedure_prices[procedure]['price'] %>
                                     </div>
                                 </div>
 
@@ -84,7 +90,9 @@ EOB
                                         <span style="color:#5A2D81; font-weight: bold; ">Insurance Paid: </span>
                                     </div>
                                     <div class="col-md-4">
-                                        <span style="color:#5A2D81; font-weight: bold; "> $184.32 </span>
+                                        <span style="color:#5A2D81; font-weight: bold; ">
+                                          $&lt;%= '%.2f' % @insurance_receipts[procedure]['covered_amount'] %>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -98,7 +106,8 @@ EOB
                                     <div class="col-md-8">
                                         Discount:
                                     </div>
-                                    <div class="col-md-4">$269.90
+                                    <div class="col-md-4">
+                                      $&lt;%= '%.2f' % @insurance_receipts[procedure]['discount_amount'] %>
                                     </div>
                                 </div>
                                 <br>
@@ -108,7 +117,9 @@ EOB
                                     </div>
 
                                     <div class="col-md-4">
-                                        <h1 style="font-weight: bold; font-size: 24px; color: #BACA33; ">$46.08</h1>
+                                        <h1 style="font-weight: bold; font-size: 24px; color: #BACA33; ">
+                                          $&lt;%= '%.2f' % @owed_amounts[procedure] %>
+                                        </h1>
                                     </div>
                                 </div>
 
@@ -127,119 +138,98 @@ EOB
                 </div>
                 <hr>
             </div>
+              &lt;% end %>
+            &lt;% end %>
+
             <!--=====================
-            SERVICE #2
+            SERVICES NOT COVERED BY INSURANCE
             ==========================-->
-            <div class="card-block " style="margin-bottom: 0; padding-bottom: 0;">
-                <div class="row ">
-                    <div class="col-md-8">
-                        <div class="card " style="min-height: 230px; ">
-                            <div class="card-block ">
-                                <p style="color:#5A2D81; font-weight: bold; "> 31628 Bronch Bx </p>
-                                <span> Bronchoscopy, rigid or flexible, when performed with computer-assisted, image-guided navigation.
-                                </span>
-                                <p>Add-on to primary procedure</p>
-                                <br>
-                                <p> Diagnosis: Malignant Neoplasm in Lung</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 ">
-                        <div class="card " style="min-height: 230px; ">
-                            <div class="card-block ">
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        Total Charge:
-                                    </div>
-                                    <div class="col-md-4">$470.00
-                                    </div>
-                                </div>
+            &lt;% for procedure in @procedures_performed %>
+              &lt;% if not @insurance_receipts.has_key? procedure %>
+              <div class="card-block " style="margin-bottom: 0; padding-bottom: 0;">
+                  <div class="row ">
+                      <div class="col-md-8">
+                          <div class="card " style="min-height: 230px; ">
+                              <div class="card-block ">
+                                  <p style="color:#5A2D81; font-weight: bold; ">
+                                    &lt;%= procedure %>
+                                    &lt;%= @cpt_codes[procedure]['service'] %>
+                                  </p>
+                                  <span>
+                                    &lt;%= @cpt_codes[procedure]['description'] %>
+                                  </span>
+                                  <br><br>
+                                  <p> Diagnosis: Malignant Neoplasm in Lung</p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-md-4 ">
+                          <div class="card " style="min-height: 230px; ">
+                              <div class="card-block ">
+                                  <div class="row">
+                                      <div class="col-md-8">
+                                          Total Charge:
+                                      </div>
+                                      <div class="col-md-4">
+                                        $&lt;%= '%.2f' % @procedure_prices[procedure]['price'] %>
+                                      </div>
+                                  </div>
 
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <span style="color:#5A2D81; font-weight: bold; ">Insurance Paid: </span>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <span style="color:#5A2D81; font-weight: bold; "> $223.54 </span>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        Patient Paid-to-Date:
-                                    </div>
-                                    <div class="col-md-4">$0
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        Discount:
-                                    </div>
-                                    <div class="col-md-4">$190.57
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <h1 style="font-weight: bold; font-size: 24px; color: #BACA33; ">Patient owes:</h1>
-                                    </div>
+                                  <div class="row">
+                                      <div class="col-md-8">
+                                          <span style="color:red; font-weight: bold; ">Insurance Paid: </span>
+                                      </div>
+                                      <div class="col-md-4">
+                                          <span style="color:red; font-weight: bold; ">
+                                            $0
+                                          </span>
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-md-8">
+                                          Patient Paid-to-Date:
+                                      </div>
+                                      <div class="col-md-4">$0
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-md-8">
+                                          Discount:
+                                      </div>
+                                      <div class="col-md-4">
+                                        $0
+                                      </div>
+                                  </div>
+                                  <br>
+                                  <div class="row">
+                                      <div class="col-md-8">
+                                          <h1 style="font-weight: bold; font-size: 24px; color: #BACA33; ">Patient owes:</h1>
+                                      </div>
 
-                                    <div class="col-md-4">
-                                        <h1 style="font-weight: bold; font-size: 24px; color: #BACA33; ">$55.89</h1>
-                                    </div>
-                                </div>
+                                      <div class="col-md-4">
+                                          <h1 style="font-weight: bold; font-size: 24px; color: #BACA33; ">
+                                            $&lt;%= '%.2f' % @owed_amounts[procedure] %>
+                                          </h1>
+                                      </div>
+                                  </div>
 
-                                <div class="row">
-                                    <div class="col-md-8">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <button "class="btn btn-primary " data-toggle="tooltip" data-placement="bottom" title="Call 1-800-777-8888" style="color:blue; margin-top:-5px">
-                                        <span style="text-decoration:underline;">Refute</span></button>
-                                    </div>
-                                </div>
+                                  <div class="row">
+                                      <div class="col-md-8">
+                                      </div>
+                                      <div class="col-md-4">
+                                          <button class="btn btn-primary " data-toggle="tooltip" data-placement="bottom" title="Call 1-800-777-8888 " style="border:none;background-color:white; color:blue; margin-top:-5px">
+                                              <span style="text-decoration:underline;">Refute</span></button>
+                                      </div>
+                                  </div>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-            </div>
-            <div class="card-block ">
-                <div class="row ">
-
-                    <div class="col-md-8">
-                        <div class="card " style="min-height: 230px; ">
-                            <div class="card-block ">
-                                <p style="color:#5A2D81; font-weight: bold; "> CPT and PROCEDURE NAME</p>
-                                <span>Cellulite is fat that is caught between bands of connective tissue directly beneath the skin that creates a lumpy, bumpy orange peel appearance mostly on the hips, thighs and backsides of most women. </span>
-                                <p> Diagnosis: Respiratory Distress</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 ">
-                        <div class="card " style="min-height: 230px; ">
-                            <div class="card-block ">
-                                <p> Total Charge: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $200
-                                    <br> <span style="color:red; font-weight: bold; ">Insurance Paid:
-                                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                      $0</span>
-                                    <br> <span> Discount:
-                                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                      $40</span>
-                                    <br>
-
-                                <h1 style="font-weight: bold; font-size: 24px; color: #BACA33; ">Patient owes: $160</h1>
-                                </p>
-
-                                <div class="row">
-                                    <button type="button " class="btn btn-primary " data-toggle="tooltip" data-placement="bottom" title="Call 1-800-777-8888 " style="border:none;background-color:white; color:blue;">
-
-                                        <span style="text-decoration:underline;">Refute</span></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <hr>
+              </div>
+              &lt;% end %>
+            &lt;% end %>
         </div>
     </div>
 </div>
