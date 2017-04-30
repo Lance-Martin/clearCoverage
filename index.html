@@ -11,9 +11,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
-    <nav class="navbar navbar-light bg-faded">
-      <h1 class="navbar-brand mb-0" style = "color: #5A2D81">Clear Coverage</h1>
-    </nav>
+    &lt;%= erb :_nav_top %>
+
     <div class="row" style = "text-align:center; margin-top: 5px;">
       <div class="col-md-4" style = "border-right: 2px solid #F2F2F2">
         John Doe. <br>
@@ -40,13 +39,21 @@
                    <span style="color:#5A2D81; font-weight: bold; font-size: 22px">04.29.17</span>
 
                </div>
+
+               &lt;% for procedure in @procedures_performed %>
+                 &lt;% if @insurance_receipts.has_key? procedure %>
                <div class="card-block" style = "margin-bottom: 0; padding-bottom: 0;">
                    <div class="row">
                        <div class="col-md-4">
                          <div class="card" style = "min-height: 250px;">
                            <div class="card-block">
-                             <p style="color:#5A2D81; font-weight: bold;"> CPT and PROCEDURE NAME</p>
-                             <span>Cellulite is fat that is caught between bands of connective tissue directly beneath the skin that creates a lumpy, bumpy orange peel appearance mostly on the hips, thighs and backsides of most women. </span>
+                             <p style="color:#5A2D81; font-weight: bold;">
+                               &lt;%= procedure %>
+                               &lt;%= @cpt_codes[procedure]['service'] %>
+                             </p>
+                             <span>
+                               &lt;%= @cpt_codes[procedure]['description'] %>
+                             </span>
                              <p> Diagnosis: Respiratory Distress</p>
                            </div>
                          </div>
@@ -54,12 +61,23 @@
                        <div class="col-md-4">
                          <div class="card" style = "min-height: 250px;">
                            <div class="card-block">
-                             <p> Total Cost: $200
-                                 <br> <span style="color:#5A2D81; font-weight: bold;">Insurance Paid: $100</span>
-                                 <br> <span> Discount: $40</span>
+                             <p>
+                                 Total Cost:
+                                 $&lt;%= '%.2f' % @procedure_prices[procedure]['price'] %>
+                                 <br> <span style="color:#5A2D81; font-weight: bold;">
+                                   Insurance Paid:
+                                   $&lt;%= '%.2f' % @insurance_receipts[procedure]['covered_amount'] %>
+                                 </span>
+                                 <br> <span>
+                                   Discount:
+                                   $&lt;%= '%.2f' % @insurance_receipts[procedure]['discount_amount'] %>
+                                 </span>
                                  <br>
                                  <br>
-                                 <span style="font-weight: bold; font-size: 22px; color: #BACA33;">Patient owes: $60</span>
+                                 <span style="font-weight: bold; font-size: 22px; color: #BACA33;">
+                                   Patient owes:
+                                   $&lt;%= '%.2f' % @owed_amounts[procedure] %>
+                                 </span>
                                  <br>
                                  <span> (individual service)</span>
                              </p>
@@ -71,7 +89,9 @@
                            <div class="card-block">
                              <p>
                                 <br>
-                                <h1 style = "color: #BACA33"><i class="fa fa-usd" aria-hidden="true"></i>60</h1>
+                                <h1 style = "color: #BACA33">
+                                  <i class="fa fa-usd" aria-hidden="true"></i>&lt;%= '%.2f' % @owed_amounts[procedure] %>
+                                </h1>
                                 <button type="button" class="btn btn-success" style = "margin-bottom: 5px;">Payment</button><br>
                                 <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Call 1-800-777-8888">Refute</button>
                              </p>
@@ -81,56 +101,23 @@
                    </div>
                    <hr>
                  </div>
-               <!-- ITEM 2-->
-               <div class="card-block"  style = "padding-bottom: 0; padding-top: 0; margin-bottom: 0">
-                   <div class="row">
-                     <div class="col-md-4">
-                       <div class="card" style = "min-height: 250px;">
-                         <div class="card-block">
-                           <p style="color:#5A2D81; font-weight: bold;"> CPT and PROCEDURE NAME</p>
-                           <span>Cellulite is fat that is caught between bands of connective tissue directly beneath the skin that creates a lumpy, bumpy orange peel appearance mostly on the hips, thighs and backsides of most women. </span>
-                           <p> Diagnosis: Respiratory Distress</p>
-                         </div>
-                       </div>
-                     </div>
-                     <div class="col-md-4">
-                       <div class="card" style = "min-height: 250px;">
-                         <div class="card-block">
-                           <p> Total Cost: $200
-                               <br> <span style="color:#5A2D81; font-weight: bold;">Insurance Paid: $100</span>
-                               <br> <span> Discount: $40</span>
-                               <br>
-                               <br>
-                               <span style="font-weight: bold; font-size: 22px; color: #BACA33;">Patient owes: $60</span>
-                               <br>
-                               <span> (individual service)</span>
-                           </p>
-                         </div>
-                       </div>
-                     </div>
-                     <div class="col-md-4">
-                       <div class="card" style = "min-height: 250px; text-align:center;">
-                         <div class="card-block">
-                           <p>
-                              <br>
-                              <h1 style = "color: #BACA33"><i class="fa fa-usd" aria-hidden="true"></i>60</h1>
-                              <button type="button" class="btn btn-success" style = "margin-bottom: 5px;">Payment</button><br>
-                              <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Call 1-800-777-8888">Refute</button>
-                           </p>
-                         </div>
-                       </div>
-                     </div>
-                 </div>
-                 <hr>
-              </div>
-               <!-- ITEM 3-->
+                 &lt;% end %>
+               &lt;% end %>
+
+               &lt;% for procedure in @procedures_performed %>
+                 &lt;% if not @insurance_receipts.has_key? procedure %>
                <div class="card-block" style = "margin-top: 0; padding-top: 0;">
                    <div class="row">
                      <div class="col-md-4">
                        <div class="card" style = "min-height: 250px;">
                          <div class="card-block">
-                           <p style="color:#5A2D81; font-weight: bold;"> CPT and PROCEDURE NAME</p>
-                           <span>Cellulite is fat that is caught between bands of connective tissue directly beneath the skin that creates a lumpy, bumpy orange peel appearance mostly on the hips, thighs and backsides of most women. </span>
+                           <p style="color:#5A2D81; font-weight: bold;">
+                             &lt;%= procedure %>
+                             &lt;%= @cpt_codes[procedure]['service'] %>
+                           </p>
+                           <span>
+                             &lt;%= @cpt_codes[procedure]['description'] %>
+                           </span>
                            <p> Diagnosis: Respiratory Distress</p>
                          </div>
                        </div>
@@ -138,12 +125,17 @@
                      <div class="col-md-4">
                        <div class="card" style = "min-height: 250px;">
                          <div class="card-block">
-                           <p> Total Cost: $200
+                           <p>
+                               Total Cost:
+                               $&lt;%= '%.2f' % @procedure_prices[procedure]['price'] %>
                                <br> <span style="color:red; font-weight: bold;">Insurance Paid: $0</span>
-                               <br> <span> Discount: $40</span>
+                               <br> <span> Discount: $0</span>
                                <br>
                                <br>
-                               <span style="font-weight: bold; font-size: 22px; color: #BACA33;">Patient owes: $160</span>
+                               <span style="font-weight: bold; font-size: 22px; color: #BACA33;">
+                                 Patient owes:
+                                 $&lt;%= '%.2f' % @owed_amounts[procedure] %>
+                               </span>
                                <br>
                                <span> (individual service)</span>
                            </p>
@@ -155,7 +147,9 @@
                          <div class="card-block">
                            <p>
                               <br>
-                              <h1 style = "color: #BACA33"><i class="fa fa-usd" aria-hidden="true"></i>160</h1>
+                              <h1 style = "color: #BACA33">
+                                <i class="fa fa-usd" aria-hidden="true"></i>&lt;%= '%.2f' % @owed_amounts[procedure] %>
+                              </h1>
                               <button type="button" class="btn btn-success" style = "margin-bottom: 5px;">Payment</button><br>
                               <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Call 1-800-777-8888">Refute</button>
                            </p>
@@ -164,6 +158,9 @@
                      </div>
                  </div>
               </div>
+                 &lt;% end %>
+               &lt;% end %>
+
              </div>
              <div class="card" style = "width: 100%; margin-top: 5px;">
                <div class="card-header">
@@ -194,7 +191,10 @@
          </div>
     <script type="text/javascript">
     var data = [{
-      values: [237.78, 840],
+      values: [
+        &lt;%= @chart_data['paid'] %>,
+        &lt;%= @chart_data['unpaid'] %>
+      ],
       labels: ['Paid', 'Unpaid'],
       domain: {
         x: [0, .58]
@@ -217,7 +217,7 @@
             color: '#BACA33'
           },
           showarrow: false,
-          text: '$237.98',
+          text: '$&lt;%= "%.2f" % @chart_data["paid"] %>',
           x: 0.13,
           y: 0.5
         },
