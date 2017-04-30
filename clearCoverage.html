@@ -1,0 +1,280 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Clear Coverage</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+<nav class="navbar navbar-light bg-faded">
+    <h1 class="navbar-brand mb-0" style="color: #5A2D81">Clear Coverage</h1>
+</nav>
+
+<!-- ============================
+PIE CHARTS
+================================-->
+<div id="doughnutChart" class="chart"></div>
+
+<!-- ============================
+Patient Provider INFO
+================================-->
+<div class="row" style="height: 400px;text-align: center; color:white;">
+    INSERT 2 pie graphs
+</div>
+<div class="row" style="text-align:center; margin-top: 5px;">
+    <div class="col-md-4" style="border-right: 2px solid #BCCD9E">
+        John Doe. <br> 123 Main Street. <br> Austin, Tx 78717.
+    </div>
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4" style="border-left: 2px solid #BCCD9E">
+        Austin Heart Hospital. <br> 123 Broadway Street. <br> Austin, TX 78717 <br>
+    </div>
+</div>
+<div class="container">
+
+    <!-- ============================
+EOB
+================================-->
+
+    <!--ALL ITEMS PERFORMED ON SAME DATE -->
+    <!-- ITEM 1-->
+    <div class="row">
+        <div class="card" style="text-align: left; margin-top: 10px;">
+            <div class="card-header " style = "background-color: #ddb3eb">
+                <span style="color:#5A2D81; font-weight: bold; font-size: 22px "> Date of Service: 04.29.17</span>
+            </div>
+            <!--=====================
+            SERVICE #1
+            ==========================-->
+            <div class="card-block " style="margin-bottom: 0; padding-bottom: 0;">
+                <div class="row ">
+                    <div class="col-md-8">
+                        <div class="card " style="min-height: 230px; ">
+                            <div class="card-block ">
+                                <p style="color:#5A2D81; font-weight: bold; "> 31627 Em Nav Bronch </p>
+                                <span> Bronchoscopy, rigid or flexible, with lung biopsy, single lobe</span>
+                                <br>
+                                <p> Diagnosis: Malignant Neoplasm in Lung</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 ">
+                        <div class="card " style="min-height: 230px; ">
+                            <div class="card-block ">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        Total Charge:
+                                    </div>
+                                    <div class="col-md-4">$500.00
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <span style="color:#5A2D81; font-weight: bold; ">Insurance Paid: </span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <span style="color:#5A2D81; font-weight: bold; "> $184.32 </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        Patient Paid-to-Date:
+                                    </div>
+                                    <div class="col-md-4">$0
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        Discount:
+                                    </div>
+                                    <div class="col-md-4">$269.90
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h1 style="font-weight: bold; font-size: 24px; color: #BACA33; ">Patient owes:</h1>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <h1 style="font-weight: bold; font-size: 24px; color: #BACA33; ">$46.08</h1>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-8">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-primary " data-toggle="tooltip" data-placement="bottom" title="Call 1-800-777-8888 " style="border:none;background-color:white; color:blue; margin-top:-5px">
+                                            <span style="text-decoration:underline;">Refute</span></button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <!--=====================
+            SERVICE #2
+            ==========================-->
+            <div class="card-block " style="margin-bottom: 0; padding-bottom: 0;">
+                <div class="row ">
+                    <div class="col-md-8">
+                        <div class="card " style="min-height: 230px; ">
+                            <div class="card-block ">
+                                <p style="color:#5A2D81; font-weight: bold; "> 31628 Bronch Bx </p>
+                                <span> Bronchoscopy, rigid or flexible, when performed with computer-assisted, image-guided navigation.
+                                </span>
+                                <p>Add-on to primary procedure</p>
+                                <br>
+                                <p> Diagnosis: Malignant Neoplasm in Lung</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 ">
+                        <div class="card " style="min-height: 230px; ">
+                            <div class="card-block ">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        Total Charge:
+                                    </div>
+                                    <div class="col-md-4">$470.00
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <span style="color:#5A2D81; font-weight: bold; ">Insurance Paid: </span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <span style="color:#5A2D81; font-weight: bold; "> $223.54 </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        Patient Paid-to-Date:
+                                    </div>
+                                    <div class="col-md-4">$0
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        Discount:
+                                    </div>
+                                    <div class="col-md-4">$190.57
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h1 style="font-weight: bold; font-size: 24px; color: #BACA33; ">Patient owes:</h1>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <h1 style="font-weight: bold; font-size: 24px; color: #BACA33; ">$55.89</h1>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-8">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button "class="btn btn-primary " data-toggle="tooltip" data-placement="bottom" title="Call 1-800-777-8888" style="color:blue; margin-top:-5px">
+                                        <span style="text-decoration:underline;">Refute</span></button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div class="card-block ">
+                <div class="row ">
+
+                    <div class="col-md-8">
+                        <div class="card " style="min-height: 230px; ">
+                            <div class="card-block ">
+                                <p style="color:#5A2D81; font-weight: bold; "> CPT and PROCEDURE NAME</p>
+                                <span>Cellulite is fat that is caught between bands of connective tissue directly beneath the skin that creates a lumpy, bumpy orange peel appearance mostly on the hips, thighs and backsides of most women. </span>
+                                <p> Diagnosis: Respiratory Distress</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 ">
+                        <div class="card " style="min-height: 230px; ">
+                            <div class="card-block ">
+                                <p> Total Charge: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $200
+                                    <br> <span style="color:red; font-weight: bold; ">Insurance Paid:
+                                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      $0</span>
+                                    <br> <span> Discount:
+                                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      $40</span>
+                                    <br>
+
+                                <h1 style="font-weight: bold; font-size: 24px; color: #BACA33; ">Patient owes: $160</h1>
+                                </p>
+
+                                <div class="row">
+                                    <button type="button " class="btn btn-primary " data-toggle="tooltip" data-placement="bottom" title="Call 1-800-777-8888 " style="border:none;background-color:white; color:blue;">
+
+                                        <span style="text-decoration:underline;">Refute</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- ============================
+PAY NOW
+================================-->
+<div class="row" style=" padding-top: 100px;padding-bottom: 100px; ">
+    <div class="card" style="width:94%; margin-left:3%; margin-right:3%">
+        <div class=" card-header ">
+            Pay Now
+        </div>
+        <div class="card-block ">
+            <div class="row ">
+                <div class="col ">
+                    <p style="color:#5A2D81; font-weight: bold; "> PAY OFFLINE</p>
+                    <p> <b>Pay over phone by calling:</b> 123.456.7890 </p>
+                    <br> <b>Pay by mail:</b><br>
+                    <p>1234 street name
+                        <br>Austin, TX 78759
+                    </p>
+                </div>
+                <div class="col ">
+                    <button class="btn success ">Pay Online</button>
+                </div>
+                <div class="col ">
+                    <button class="btn warning ">Sign Up for Care Credit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="main.js"></script>
+</body>
+
+</html>
